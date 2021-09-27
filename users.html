@@ -222,6 +222,7 @@
           <li><a href="#information">Information</a></li>
         </ul>
         <!-- <a class="button grey rounded small" href="#" style="border:1px white solid">Profile</a> -->
+        <button class="button grey rounded small" href="#" style="border:1px white solid" onclick="logoutUsers()">Log Out</button>
       </div>
     </div>
     <div class="sections compact hidden">
@@ -468,6 +469,27 @@
       style="background-image:url(https://images.unsplash.com/photo-1446770145316-10a05382c470?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyOTkzODI5Nw&ixlib=rb-1.2.1&q=80&w=400)">
     </div>
   </section>
+  <!-- Bottom Panel -->
+  <nav class="panel bottom forceMobileView">
+    <div class="sections desktop">
+      <div class="left"></div>
+      <div class="center">
+        <ul class="menu uppercase">
+          <!--<li><a href="#">Tour</a></li>
+          <li><a href="#">Upgrade</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Explore</a></li>-->
+          <li><a href="#">Developed by Mahika Mamidipalli</a></li>
+        </ul>
+      </div>
+      <div class="right"><span data-dropdown-id="2" class="button actionButton dropdownTrigger"></span></div>
+      <!-- Before the end of the span tag: -->
+      <!-- <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share"></use></svg> -->
+    </div>
+    <!-- <div class="sections compact hidden">
+      <div class="right"><span data-dropdown-id="2" class="button actionButton dropdownTrigger"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share"></use></svg></span></div>
+    </div> -->
+  </nav>
 
   <!-- jQuery 3.5.1 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -510,7 +532,8 @@
     // const db = firebase.firestore();
 
     function imgUpload() {
-      alert("Uploaded")
+      // alert("Uploaded")
+      swal('Uploaded!',)
       const ref = firebase.storage().ref();
       const file = document.querySelector('#photo').files[0];
       //alert(file.name);
@@ -523,14 +546,16 @@
         .then(snapshot => snapshot.ref.getDownloadURL())
         .then((url) => {
           //console.log(url);
-          alert(url);
+          // alert(url);
+          swal(url,)
           // document.querySelector('#someImg').src = url;
           // var brRef = firebase.database().ref("ImageDetails");
           // brRef.push({
           //   username: "User1",
           //   imgURL: url
           // });
-          alert(auth.currentUser.uid);
+          // alert(auth.currentUser.uid);
+          swal(auth.currentUser.uid,)
 
           firebase.database().ref('ImgInfo/' + auth.currentUser.uid + '/' + new Date()).set({
             imgurl: url,

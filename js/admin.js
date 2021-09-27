@@ -23,6 +23,7 @@ function FetchAllData(){
             }
         )
     });
+    document.getElementById("report_issues_table").style.display="inline-table";
 }
 
 function getValues(e){
@@ -39,7 +40,8 @@ function getValues(e){
     // alert("Location value: "+tdList[2].innerText);
     document.getElementById("A_locationField").value = tdList[2].innerText;
       
-    alert("Scroll to the Inspections Slide to Fill out an Inspection Form!")
+    // alert("Scroll to the Inspections Slide to Fill out an Inspection Form!")
+    swal('Scroll to the Inspections Slide to Fill out an Inspection Form',)
     // alert("Column 3 value, third cell : "+tdList[2].innerText);
     // document.getElementById("col3").value = tdList[2].innerText;
 }
@@ -64,10 +66,20 @@ function saveInspection() {
         description: description
     })
         .then(() => {
-            alert('Inspection Saved!')
+            // alert('Inspection Saved!')
+            swal({
+                icon: 'success',
+                title: 'Inspection Saved', 
+            })
         })
         .catch((error) => {
-            console.error("Error writing Inspection: ", error);
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            swal({
+                icon: 'error',
+                title: 'Error',
+                text: "Error",
+            })
         });
     var brRef = firebase.database().ref("InspectionForms");
     brRef.push({
@@ -79,9 +91,42 @@ function saveInspection() {
         description: description
     })
         .then(() => {
-            alert('Data Saved!')
+            // alert('Data Saved!')
+            swal({
+                icon: 'success',
+                title: 'Data Saved', 
+            })
         })
         .catch((error) => {
-            console.error("Error writing Data: ", error);
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            swal({
+                icon: 'error',
+                title: 'Error',
+                text: "Error",
+            })
         });
+}
+
+function logoutAdmin(){
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        swal({
+            icon: 'success',
+            title: 'Succesfully Logged Out', 
+        }).then((value) => {
+            setTimeout(function(){
+                window.location.replace("./index.html");
+            }, 1000)
+        });
+      }).catch((error) => {
+        // An error happened.
+        var errorCode = error.code;
+            var errorMessage = error.message;
+            swal({
+                icon: 'error',
+                title: 'Error',
+                text: "Error",
+            })
+      });      
 }

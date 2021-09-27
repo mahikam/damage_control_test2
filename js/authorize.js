@@ -21,7 +21,7 @@ function signUp_Admin(){
             swal('Your Account Created','Your account was created successfully, you can log in now.',
             ).then((value) => {
                 setTimeout(function(){
-                    window.location.replace("../admin.html");
+                    window.location.replace("./admin.html");
                 }, 1000)
             });
         }).catch((error) => {
@@ -84,7 +84,7 @@ function signUp_User(){
             swal('Your Account Created','Your account was created successfully, you can log in now.',
             ).then((value) => {
                 setTimeout(function(){
-                    window.location.replace("../users.html");
+                    window.location.replace("./users.html");
                 }, 1000)
             });
         }).catch((error) => {
